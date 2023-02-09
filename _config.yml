@@ -1,3 +1,9 @@
-theme: jekyll-theme-cayman
+title: CS184 Project Webpage
+description: Project Writeups by Alicia and Michelle
+theme: just-the-docs
+
 baseurl: "/cs184-proj-webpage"
 url: "https://michelllepan.github.io"
+
+aux_links:
+  Template Repository: https://github.com/just-the-docs/just-the-docs-template
