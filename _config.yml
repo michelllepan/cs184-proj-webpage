@@ -1,9 +1,14 @@
 title: CS184 Project Webpage
 description: Project Writeups by Alicia and Michelle
-theme: just-the-docs
+# theme: just-the-docs
 
+# Remote Setting
 baseurl: "/cs184-proj-webpage"
-url: "https://michelllepan.github.io"
+# url: "https://michelllepan.github.io"
+
+# Theme
+# theme: "just-the-docs"
+remote_theme: pmarsceill/just-the-docs
 
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
