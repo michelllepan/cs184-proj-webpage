@@ -1,6 +1,6 @@
 ---
 layout: default
-title: proj1
+title: Project 1
 nav_order: 1
 has_children: false
 permalink: /proj1
@@ -13,6 +13,9 @@ permalink: /proj1
 ## Task 2
 
 ## Task 3
+
+Below is an image of our dancing cubeman doing a pirouette.
+<img src="proj1_assets/my_robot.png" width=400>
 
 ## Task 4
 
