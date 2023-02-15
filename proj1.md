@@ -43,18 +43,31 @@ Below is an image of our dancing cubeman doing a pirouette.
 
 Barycentric coordinates are essentially three scalars (alpha, beta, and gamma) that can determine the position of any point within a triangle by indicating how far/close the point is to a vertex. In the example of a triangle with red, green, and blue vertices, to calculate a color/position in the triangle you would need to calculate the weighted sum of each vertex's color and the three scalars. In the image below, the chosen point's color is closer to the red vertex (A), which would imply that the alpha value would have a greater value than the beta value. 
 
-<img src="proj1_assets/barycentric_tri.png" width=20%>
+<img src="proj1_assets/barycentric_tri.png" width=20% />
 
 Here is a png screenshot of svg/basic/test7.svg with default viewing parameters and sample rate 1:
 
-<img src="proj1_assets/barycentric_tri2.png" width=70%>
+<img src="proj1_assets/barycentric_tri2.png" width=50% />
 
 ## Task 5
 
-Pixel sampling is where you calculate the color of a pixel using various factors, for example any underlying textures or surrounding pixels. To perform texture mapping, we loop through the entire image and transform the screen coordinate to the corresponding texture space. Then, we use pixel sampling to find the best color for the pixel, either by sampling nearest pixels or bilinearly.
+Pixel sampling is where you calculate the color of a pixel using various factors, for example any underlying textures or surrounding pixels. To perform texture mapping, we loop through the entire image and transform the screen coordinate to the corresponding texture space. Then, we use pixel sampling to find the best color for the pixel, either by sampling the nearest pixels or bilinearly.
 
-help
+Nearest pixel sampling is where you sample the nearest pixel from the original image to use in the new image. Bilinear pixel sampling instead samples the four nearest pixels in the original image and essentially takes a weighted average to calculate the pixel color. 
 
+<p float="center">
+  <img src="proj1_assets/nearest_1.png" width="30%" />
+  <img src="proj1_assets/nearest_16.png" width="30%" /> 
+</p>
+
+<p float="center">
+  <img src="proj1_assets/bilinear_1.png" width="30%" />
+  <img src="proj1_assets/bilinear_16.png" width="30%" /> 
+</p>
+
+Comparing the screenshots above, you can see how "jagged" the letters in the nearest pixel sampling at 1 sample per pixel appears. It's not smooth at all, and almost impossible to tell what letters are in the twisted Berkeley seal. This is because we are just taking the nearest pixel value instead of calculating a new one after the texture was applied, which can involve a lot of twisting/turning. Thus, there is a lot of aliasing going on. In some way, supersampling with nearest pixel sampling is able to get rid of some of the aliasing, but there are still some white "bumps" on the letter "E" that makes it look weird. This is because supersampling was done after nearest pixel sampling.
+
+In contrast, bilinear pixel sampling seems to outperform nearest pixel sampling in these examples. At a sample rate of 1, the letters seem a lot more smoothed out. This is because bilinear pixel sampling performs a bilinear interpolation between the pixels in the surrounding area to generate new pixel values. This helps smooth out a lot of the jaggies that appear when applying such a twisty texture. Then, with supersampling, the transition between the background and the letters are a lot more smooth and there's a lot less aliasing. You can even read the letters on the seal.
 
 ## Task 6
 
