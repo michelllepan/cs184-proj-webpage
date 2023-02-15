@@ -10,6 +10,10 @@ permalink: /proj1
 
 ## Overview
 
+In this project, we implemented a rasterizer to display SVG files on a screen. The images are specified in the SVG files by vectors and textures, which we convert into pixels to display. To do this, we wrote code to process triangles, lines, and points, and added additional features such as transforms and various sampling options to reduce aliasing.
+
+We found texture mapping to be a particularly interesting section of this project, as we gained a better understanding of the texture mapping process, from working in the barycentric coordinate system to using mipmap levels. We found task 2 to be quite challenging as we constructed the indexing scheme for our sample buffer, but we definitely learned a lot throughout the process as well :) 
+
 ## Task 1
 
 To rasterize triangles, we start by first finding the minimum and maximum x and y values of the triangle coordinates. We then iterate through every pixel within these bounds and perform the three line test to determine if we should fill the pixel in with the triangle color. The three line test checks a pixel against each of the three edges of the triangle, and determines that it is inside the triangle if it is on the same side of all three edges. We perform the three line test for both possibilities of triangle coordinate orders: clockwise and counterclockwise.
@@ -74,16 +78,17 @@ Level sampling solves the problem of aliasing when we sample textures in areas w
 Pixel sampling is the fastest and uses the least memory out of the sampling methods, but it has the least antialiasing power because we only sample once per pixel that is displayed. In contrast, sampling a fixed number of times per pixel is the slowest and uses the most memory (a factor of the sample rate), but has the best antialiasing power. Using level sampling with a mipmap is a balance between the two of these: since the filtered textures are precomputed, level sampling is faster than supersampling (and slower than pixel sampling), and it only uses 33% additional memory while reducing aliasing.
 
 Below are some images of Kermit, with the pixel inspector centered on his eye to showcase the differences between different sampling methods.
-`L_ZERO` and `P_NEAREST`
+
+`L_ZERO` and `P_NEAREST` <br>
 <img src="proj1_assets/l_zero_p_nearest.png" width=300>
 
-`L_ZERO` and `P_LINEAR`
+`L_ZERO` and `P_LINEAR` <br>
 <img src="proj1_assets/l_zero_p_nearest.png" width=300>
 
-`L_NEAREST` and `P_NEAREST`
+`L_NEAREST` and `P_NEAREST` <br>
 <img src="proj1_assets/l_nearest_p_nearest.png" width=300>
 
-`L_NEAREST` and `P_LINEAR`
+`L_NEAREST` and `P_LINEAR` <br>
 <img src="proj1_assets/l_nearest_p_linear.png" width=300>
 
 
