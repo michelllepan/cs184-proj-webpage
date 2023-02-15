@@ -20,7 +20,6 @@ Below is a visualization of our rasterization of some triangles, with the pixel 
 
 <img src="proj1_assets/triangle.png" width=400>
 
-
 ## Task 2
 
 Our supersampling algorithm is pretty straightforward, and we only slightly modify our triangle rasterization method and rasterization pipeline. Instead of looping through the entire image pixel by pixel as described in [Task 1](#task-1) and mapping 1:1 into the framebuffer, we instead increment by a calculated "sample gap" (one over the square root of our sample rate) and map one pixel to multiple pixels within the framebuffer. This basically "enlarges" our image. After we map one pixel to multiple pixels in the framebuffer, we cannot apply this directly to the screen. Thus, when we resolve our framebuffer, we again loop through the "enlarged" image and calculate the color averages of surrounding pixels (e.g. groups of 4 or 16 pixels).
