@@ -8,7 +8,18 @@ permalink: /proj1
 
 # Project 1
 
+## Overview
+
 ## Task 1
+
+To rasterize triangles, we start by first finding the minimum and maximum x and y values of the triangle coordinates. We then iterate through every pixel within these bounds and perform the three line test (as described in lecture) to determine if we should fill the pixel in with the triangle color. We perform the three line test for both possibilities of triangle coordinate orders: clockwise and counterclockwise.
+
+When we find the min/max x and y values, we are limiting our iteration over pixels to the smallest bounding box that contains the triangle. Thus our algorithm performs the same as one that checks every sample within the bounding box of the triangle.
+
+Below is a visualization of our rasterization of some triangles, with the pixel inspector centered at a triangle corner.
+
+<img src="proj1_assets/triangle.png" width=400>
+
 
 ## Task 2
 
