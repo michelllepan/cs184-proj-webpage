@@ -42,16 +42,14 @@ Below is an image of our dancing cubeman doing a pirouette.
 ## Task 4
 
 Barycentric coordinates are essentially three scalars (alpha, beta, and gamma) that can determine the position of any point within a triangle by indicating how far/close the point is to a vertex. In the example of a triangle with red, green, and blue vertices, to calculate a color/position in the triangle you would need to calculate the weighted sum of each vertex's color and the three scalars. In the image below, the chosen point's color is closer to the red vertex (A), which would imply that the alpha value would have a greater value than the beta value. 
-
-<img src="proj1_assets/barycentric_tri.png" width=20% />
+<img src="proj1_assets/barycentric_tri.png" width=200>
 
 Here is a png screenshot of svg/basic/test7.svg with default viewing parameters and sample rate 1:
-
-<img src="proj1_assets/barycentric_tri2.png" width=50% />
+<img src="proj1_assets/barycentric_tri2.png" width=500>
 
 ## Task 5
 
-Pixel sampling is where you calculate the color of a pixel using various factors, for example any underlying textures or surrounding pixels. To perform texture mapping, we loop through the entire image and transform the screen coordinate to the corresponding texture space. Then, we use pixel sampling to find the best color for the pixel, either by sampling the nearest pixels or bilinearly.
+Pixel sampling is where you calculate the color of a pixel by finding the right texture pixel that corresponds to the image. To perform texture mapping, we loop through the entire image and transform the screen coordinate to the corresponding texture space. Then, we use pixel sampling to find the best color for the pixel, either by sampling the nearest pixels or bilinearly.
 
 Nearest pixel sampling is where you sample the nearest pixel from the original image to use in the new image. Bilinear pixel sampling instead samples the four nearest pixels in the original image and essentially takes a weighted average to calculate the pixel color. 
 
