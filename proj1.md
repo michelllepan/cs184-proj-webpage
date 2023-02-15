@@ -29,9 +29,9 @@ Supersampling is useful it smoothes over harsh pixel borders. It does this by ta
 We used this technique to antialias our triangles. For a sample rate of 1, you can see how "jagged" the triangle corners are. There is even a stray red pixel that seems to float away from the triangle! After supersampling, you can see the effects are a lot better. By supersampling a pixel multiple times, and then downsampling by taking an average of 16 pixels for example, the triangle border is a lot more smooth and less "jaggy".
 
 <p float="center">
-  <img src="proj1_assets/supersample_1.png" width="30%" />
-  <img src="proj1_assets/supersample_4.png" width="30%" /> 
-  <img src="proj1_assets/supersample_16.png" width="30%" />
+  <img src="proj1_assets/supersample_1.png" width="30%">
+  <img src="proj1_assets/supersample_4.png" width="30%"> 
+  <img src="proj1_assets/supersample_16.png" width="30%">
 </p>
 
 ## Task 3
@@ -76,10 +76,17 @@ Level sampling solves the problem of aliasing when we sample textures in areas w
 Pixel sampling is the fastest and uses the least memory out of the sampling methods, but it has the least antialiasing power because we only sample once per pixel that is displayed. In contrast, sampling a fixed number of times per pixel is the slowest and uses the most memory (a factor of the sample rate), but has the best antialiasing power. Using level sampling with a mipmap is a balance between the two of these: since the filtered textures are precomputed, level sampling is faster than supersampling (and slower than pixel sampling), and it only uses 33% additional memory while reducing aliasing.
 
 Below are some images of Kermit, with the pixel inspector centered on his eye to showcase the differences between different sampling methods.
-|  | | 
-| ----------- | ----------- |
-| `L_ZERO` and `P_NEAREST` <br><br><img src="proj1_assets/l_zero_p_nearest.png" width=300> | `L_ZERO` and `P_LINEAR` <br><br><img src="proj1_assets/l_zero_p_nearest.png" width=300> |
-| `L_NEAREST` and `P_NEAREST` <br><br><img src="proj1_assets/l_nearest_p_nearest.png" width=300> | `L_NEAREST` and `P_LINEAR` <br><br><img src="proj1_assets/l_nearest_p_linear.png" width=300> |
+`L_ZERO` and `P_NEAREST`
+<img src="proj1_assets/l_zero_p_nearest.png" width=300>
+
+`L_ZERO` and `P_LINEAR`
+<img src="proj1_assets/l_zero_p_nearest.png" width=300>
+
+`L_NEAREST` and `P_NEAREST`
+<img src="proj1_assets/l_nearest_p_nearest.png" width=300>
+
+`L_NEAREST` and `P_LINEAR`
+<img src="proj1_assets/l_nearest_p_linear.png" width=300>
 
 
 https://michelllepan.github.io/cs184-proj-webpage/
