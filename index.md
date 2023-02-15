@@ -5,6 +5,8 @@ layout: home
 
 Welcome to our Spring 2023 CS184 Projects Webpage! The writeups are done by Alicia Wang and Michelle Pan. Enjoy :)
 
+https://michelllepan.github.io/cs184-proj-webpage/
+
 ----
 
 [Just the Docs]: https://just-the-docs.github.io/just-the-docs/

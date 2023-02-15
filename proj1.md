@@ -80,3 +80,6 @@ Below are some images of Kermit, with the pixel inspector centered on his eye to
 | ----------- | ----------- |
 | `L_ZERO` and `P_NEAREST` <br><br><img src="proj1_assets/l_zero_p_nearest.png" width=300> | `L_ZERO` and `P_LINEAR` <br><br><img src="proj1_assets/l_zero_p_nearest.png" width=300> |
 | `L_NEAREST` and `P_NEAREST` <br><br><img src="proj1_assets/l_nearest_p_nearest.png" width=300> | `L_NEAREST` and `P_LINEAR` <br><br><img src="proj1_assets/l_nearest_p_linear.png" width=300> |
+
+
+https://michelllepan.github.io/cs184-proj-webpage/
