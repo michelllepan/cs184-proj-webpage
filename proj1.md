@@ -12,7 +12,7 @@ permalink: /proj1
 
 ## Task 1
 
-To rasterize triangles, we start by first finding the minimum and maximum x and y values of the triangle coordinates. We then iterate through every pixel within these bounds and perform the three line test (as described in lecture) to determine if we should fill the pixel in with the triangle color. We perform the three line test for both possibilities of triangle coordinate orders: clockwise and counterclockwise.
+To rasterize triangles, we start by first finding the minimum and maximum x and y values of the triangle coordinates. We then iterate through every pixel within these bounds and perform the three line test to determine if we should fill the pixel in with the triangle color. The three line test checks a pixel against each of the three edges of the triangle, and determines that it is inside the triangle if it is on the same side of all three edges. We perform the three line test for both possibilities of triangle coordinate orders: clockwise and counterclockwise.
 
 When we find the min/max x and y values, we are limiting our iteration over pixels to the smallest bounding box that contains the triangle. Thus our algorithm performs the same as one that checks every sample within the bounding box of the triangle.
 
@@ -57,3 +57,13 @@ help
 
 
 ## Task 6
+
+Level sampling solves the problem of aliasing when we sample textures in areas when each screen pixel has a high footprint in the texture, meaning it covers many texture pixels. The solution is to precompute lower resolution versions of the texture (to varying degrees) to use in these areas, which correspond to the different levels of our mipmap. To implement level sampling for texture mapping, we calculated the appropriate mipmap level to use by looking at how far apart adjacent screen pixels are in the texture space. The more texture pixels they span, the higher of a mipmap level we use.
+
+Pixel sampling is the fastest and uses the least memory out of the sampling methods, but it has the least antialiasing power because we only sample once per pixel that is displayed. In contrast, sampling a fixed number of times per pixel is the slowest and uses the most memory (a factor of the sample rate), but has the best antialiasing power. Using level sampling with a mipmap is a balance between the two of these: since the filtered textures are precomputed, level sampling is faster than supersampling (and slower than pixel sampling), and it only uses 33% additional memory while reducing aliasing.
+
+Below are some images of Kermit, with the pixel inspector centered on his eye to showcase the differences between different sampling methods.
+|  | | 
+| ----------- | ----------- |
+| `L_ZERO` and `P_NEAREST` <br><br><img src="proj1_assets/l_zero_p_nearest.png" width=300> | `L_ZERO` and `P_LINEAR` <br><br><img src="proj1_assets/l_zero_p_nearest.png" width=300> |
+| `L_NEAREST` and `P_NEAREST` <br><br><img src="proj1_assets/l_nearest_p_nearest.png" width=300> | `L_NEAREST` and `P_LINEAR` <br><br><img src="proj1_assets/l_nearest_p_linear.png" width=300> |
