@@ -14,6 +14,24 @@ In this project, we worked on creating Bezier curves and surfaces, and also impl
 
 While working on the second half of the project, we found it hugely helpful to plan out and visualize the operations we were implementing. We also learned the importance of thoroughly testing smaller pieces of code before building on top of them. When working on loop subdivision, we discovered bugs in our edge flipping that caused our subdivision to enter infinite loops.
 
+## Task 1
+
+The de Casteljau algorithm repeatedly performs linear interpolations between control points, weighted by a parameter t, to find points on the Bezier curve. Starting with n control points, the algorithm will linearly interpolate consecutive control points to get n-1 intermediate points, then repeat for n-2, n-3, and so on until there is only one point left. The parameter t is used to weight between consecutive points, and adjusting the parameter gives us different points along the curve.
+
+Below are screenshots of a Bezier curve defined by 6 control points at each level of evaluation, followed by the complete curve.
+
+<img src="proj2_assets/curve_1.png" width=200>
+<img src="proj2_assets/curve_2.png" width=200>
+<img src="proj2_assets/curve_3.png" width=200>
+<img src="proj2_assets/curve_4.png" width=200>
+<img src="proj2_assets/curve_5.png" width=200>
+<img src="proj2_assets/curve_6.png" width=200>
+<img src="proj2_assets/curve_7.png" width=200>
+
+Here is a curve formed by moving some of the control points, at different values of the parameter t.
+<img src="proj2_assets/curve_8.png" width=200>
+<img src="proj2_assets/curve_9.png" width=200>
+
 ## Task 2
 
 The de Casteljau algorithm can be extended to Bezier surfaces by finding the single point for every row of control points, and then finding the final point for the surface using all the calculated points. Essentially, you run the algorithm for every row of control points. This will give you a list of new points, which you can run the algorithm on once more to get the final, single point for the nxn surface.
