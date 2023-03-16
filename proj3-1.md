@@ -12,6 +12,18 @@ permalink: /proj3-1
 
 ## Part 1
 
+We generate a camera ray for coordinates in the image by transforming them to sensor coordinates in the camera space, generating a ray from the camera in that direction, and then transforming the ray into world space while accounting for the camera's position in the world. We generate random offsets within a pixel to sample multiple times and estimate the integral of the radiance over the pixel.
+
+In our triangle intersection test, we use the Möller–Trumbore intersection algorithm. We first check if the ray is parallel to the triangle by comparing the ray's direction to the normal of the triangle plane. If their cross product is zero, the ray is parallel and the two will definitely not intersect. If not, we use the vector calculations of the algorithm to find the barycentric coordinates of the ray intersection on the plane, and check if the coordinates lie within the triangle. If the intersection is within the triangle, we then check that the `t` value lies within the min and max values for the ray, and set the intersection pointer info if it does. We also update the `max_t` value of the ray.
+
+In our sphere intersection test, we use the ray and sphere equations to solve for potential intersections. We use the determinant of the resulting equation to check if there are valid solutions by testing whether it is nonnegative. We store the computed `t` values of potential intersections with the sphere, and then check to determine if they lie within the valid range for the ray. There is a possibility that the ray starts inside the sphere, in which only the larger `t` value would be an intersection. We again update the `max_t` value of the ray if there is indeed an intersection.
+
+Below are some scenes rendered with normal shading.
+
+<img src="proj3_assets/part1_coil.png" width=320>
+<img src="proj3_assets/part1_dragon.png" width=320>
+<img src="proj3_assets/part1_spheres.png" width=320>
+
 ## Part 2
 
 ## Part 3
