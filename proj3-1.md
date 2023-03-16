@@ -6,7 +6,7 @@ has_children: false
 permalink: /proj3-1
 ---
 
-# Project 2
+# Project 3-1
 
 ## Overview
 
