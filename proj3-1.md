@@ -26,6 +26,18 @@ Below are some scenes rendered with normal shading.
 
 ## Part 2
 
+Our BVH construction algorithm is pretty straightforward, and we use the simplest heuristic. We find the largest dimension to split on, and then split down the middle of that. We sort all the elements within the bounding box on our split dimension, and we simply set all the elements on the left as the left node bbox and all elements on the right as the right node bbox. There is a small edge case where there may not be elements on the left or right of the center we split on, so in this case we just take the left/rightmost element and put it in the corresponding node. 
+
+### Examples rendered with BVH
+
+<img src="proj3_assets/cow_normal.png" width=320>
+<img src="proj3_assets/max_normal.png" width=320>
+<img src="proj3_assets/lucy_normal.png" width=320>
+
+### BVH rendering times
+
+BVH acceleration heavily improves rendering times with complex geometries. For example, the human face statue went from 138.98s on a Macbook Pro to 0.54s, and the woman statue went from a whopping 328.40s to a mere 1.30s. These are incredible improvements, and can show how optimization can quickly improve runtime for these complex meshes.
+
 ## Part 3
 
 Our implementation of the direct lighting function calculates the amount of light reflected to the camera from any point in the scene by first estimating the amount of light arriving there from a light source, then using the reflection equation to calculate outgoing light. We approximate the incoming light to a point in the scene using a Monte Carlo estimator, and take samples through two different methods.
