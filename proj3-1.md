@@ -10,6 +10,12 @@ permalink: /proj3-1
 
 ## Overview
 
+In this project, we built a pathtracing renderer by implementing ray generation and intersection, bounding volume hierarchies, direct and global illumination, and adaptive sampling.
+
+We started from rendering scenes using naive intersection methods and with colors based on the directions of the surface normals. By implementing BVHs, we were able to accelerate the intersection tests and render more complex scenes. We then integrated illumination to light up the scene based on the included light sources, and we saw how to improve our sampling to decrease noise in the scene. 
+
+Overall, it was fascinating to apply the theory that we learned about ray tracing, radiometry and photometry, Monte Carlo integration, and global illumination in this project. It was also <i>illuminating</i> to see how much the performance improvements we implemented actually sped up our rendering and made a big difference in our images.
+
 ## Part 1
 
 We generate a camera ray for coordinates in the image by transforming them to sensor coordinates in the camera space, generating a ray from the camera in that direction, and then transforming the ray into world space while accounting for the camera's position in the world. We generate random offsets within a pixel to sample multiple times and estimate the integral of the radiance over the pixel.
@@ -145,5 +151,9 @@ Below are two scenes rendered with adaptive sampling, along with their sampling 
 <img src="proj3_assets/part5_wall-e_rate.png" width=320>
 
 ## Collaboration
+
+Throughout collaborating on this project, we tried to work on most parts together by pair programming. We found that this helped us spot each other's errors and allowed us to work together to understand the concepts from lecture and figure out how to translate them to code. When we couldn't find time to do this, we also split up sections to do separately and would combine them together later, although this sometimes made debugging harder. 
+
+Having a partner to work with made the debugging process faster and a bit easier since we could look at different parts of the code to see what might be going wrong, and we could bounce ideas off of each other too.
 
 https://michelllepan.github.io/cs184-proj-webpage/
