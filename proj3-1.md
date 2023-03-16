@@ -24,7 +24,7 @@ Our BVH construction algorithm is pretty straightforward, and we use the simples
 
 ### BVH rendering times
 
-BVH acceleration heavily improves rendering times with complex geometries. For example, the human face statue went from 138.98s on a Macbook Pro to 0.54s, and the woman statue went from a whopping 328.40s to a mere 1.30s. These are incredible improvements, and can show how optimization can quickly improve runtime.
+BVH acceleration heavily improves rendering times with complex geometries. For example, the human face statue went from 138.98s on a Macbook Pro to 0.54s, and the woman statue went from a whopping 328.40s to a mere 1.30s. These are incredible improvements, and can show how optimization can quickly improve
 
 ## Part 3
 
