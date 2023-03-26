@@ -14,7 +14,7 @@ In this project, we implemented rendering of microfacet materials and depth of f
 
 ## Part 2
 
-#### `alpha` values
+### `alpha` values
 
 With 128 samples per pixel, 4 samples per light, and 7 bounces:
 
@@ -36,7 +36,7 @@ With 128 samples per pixel, 4 samples per light, and 7 bounces:
 
 Alpha is a value that sets the “roughness” of the macro surface, where the lower the value, the larger the distribution will be and the glossier/more reflective the surface is. The higher the value, the surface becomes more diffuse and less smooth.
 
-#### Cosine hemisphere sampling vs. Importance Sampling
+### Cosine hemisphere sampling vs. Importance Sampling
 
 With 64 samples per pixel, 1 sample per light, and 7 bounces:
 
@@ -46,7 +46,7 @@ With 64 samples per pixel, 1 sample per light, and 7 bounces:
 With cosine hemisphere sampling (first image), it samples uniformly which gives a much noisier result within the bunny statue than importance sampling (second image). This is because importance sampling distributes samples according to light (allowing more samples on the bunny) which produces better and clearer images.
 
 
-#### Changing material
+### Changing material
 
 The new conductor material we are using is silver, and these are the value properties: 
 
@@ -63,7 +63,7 @@ In a pinhole camera model, everything in the image is focus, and each point in t
 
 We implemented depth of field by writing a new function that would generate rays originating from a randomly sampled point on the lens, pointing towards a point on the plane of focus. This point was found by looking at the ray from the sensor coordinates to the center of the lens, and calculating where it intersected the plane of focus.
 
-#### Focus stack
+### Focus stack
 
 Below are renderings of the same scene, focused at different points.
 
@@ -83,7 +83,7 @@ Below are renderings of the same scene, focused at different points.
 
 <img src="proj3_2_assets/dragon_b_0-23_d_5-00.png" width=320>
 
-#### Aperture
+### Aperture
 
 Below are renderings of the same scene, focused at the same point but with different aperture sizes.
 
