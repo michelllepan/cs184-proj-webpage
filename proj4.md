@@ -10,6 +10,10 @@ permalink: /proj4
 
 ## Overview
 
+In this project we implemented a cloth simulator using a mass and spring system. We started by building out our cloth representation using point masses and springs to represent various constraints. We then simulated movement of the cloth by calculating forces applied and using Verlet integration to update the point positions. We handled collisions, both between the cloth and other objects as well as of the cloth with itself. Finally, we implemented a variety of shaders (diffuse, Blinn-Phong, textures, bump and displacement mapping, and mirrors) to change the appearance of our cloth.
+
+Overall this project was quite enjoyable, and even when we were debugging our code we got to see many funny bugs where our cloth moved in ways we had never imagined before. It was interesting to play around with the various simulation parameters and see how they affected the way the cloth moved.
+
 ## Part 1
 
 In building our grid of masses and springs, we first added all the masses by spacing out the points along the given width and height. We assigned coordinates to the masses and chose which axes to vary the values on based on the orientation of the cloth. One bug we dealt with was in calculating the z coordinate for a vertical cloth, since we assumed that `rand()` returned values from 0 to 1 and didn't realize that we needed to divide by `RAND_MAX`.
@@ -142,21 +146,34 @@ We then implemented texture mapping. This was a fairly easy implementation, as a
 
 For the bump mapping implementation, we needed to factor in the height of the texture to output the right color. This was done by calculating a TBN (tangent-bitangent-normal) matrix which we multiplied to find the displaced model space normal, which was substituted into our diffuse and specular lighting to create a “bump” textured effect. For displacement mapping, we needed to actually alter the vertices for the cloth in the .vert file. 
 
-# HI I NEED HELP HERE 
+Here are screenshots of our bump mapping on the sphere and cloth:
+
+<img src="proj4_assets/bump_sphere.png" width=320>
+<img src="proj4_assets/bump_cloth.png" width=320>
+
+Here are screenshots of our displacement mapping on the sphere and cloth:
+
+<img src="proj4_assets/displacement_sphere.png" width=320>
+<img src="proj4_assets/displacement_cloth.png" width=320>
+
+We can observe a noticeable difference in bump and displacement mapping as the vertex positions are not actually affected in bump mapping, so we don't see the effects of shadows in the geometry of the mesh.
 
 At a low coarseness, there is not too much difference between bump and displacement mapping. However, at a higher coarseness, the displacement mapping is a lot more accurate (e.g. we can see the cracks in the bricks) and something we might want to use in actual simulations.
 
-High coarseness:
+High coarseness for bump (left) and displacement (right) mapping:
 
-<img src="high_c/full.png" width=320>
+<img src="proj4_assets/bump_coarse_high.png" width=320>
+<img src="proj4_assets/displacement_coarse_high.png" width=320>
 
-Low coarseness:
+Low coarseness for bump (left) and displacement (right) mapping:
 
-
+<img src="proj4_assets/bump_coarse_low.png" width=320>
+<img src="proj4_assets/displacement_coarse_low.png" width=320>
 
 Last but not least, we created a mirror shader that can sample an incoming radiance. It reflects an environment map with the cloth, as shown below.
 
-
+<img src="proj4_assets/mirror_1.png" width=320>
+<img src="proj4_assets/mirror_2.png" width=320>
 
 
 https://michelllepan.github.io/cs184-proj-webpage/
