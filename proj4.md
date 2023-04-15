@@ -10,9 +10,89 @@ permalink: /proj4
 
 ## Overview
 
+## Part 1
 
-## Collaboration
+In building our grid of masses and springs, we first added all the masses by spacing out the points along the given width and height. We assigned coordinates to the masses and chose which axes to vary the values on based on the orientation of the cloth. One bug we dealt with was in calculating the z coordinate for a vertical cloth, since we assumed that `rand()` returned values from 0 to 1 and didn't realize that we needed to divide by `RAND_MAX`.
 
+After creating the point masses, we iterated through each point and added springs connecting to other points for structural, shearing, and bending constraints. We made sure that we only constructed each spring once by creating the spring when we were iterating through its lower/rightmost point.
+
+Here is a rendering of our `scene/pinned2.json` with all constraints:
+
+<img src="proj4_assets/pinned2_all.png" width=480>
+
+Here is a rendering of our `scene/pinned2.json` without shearing constraints:
+
+<img src="proj4_assets/pinned2_without-shearing.png" width=480>
+
+Here is a rendering of our `scene/pinned2.json` with only shearing constraints:
+
+<img src="proj4_assets/pinned2_only-shearing.png" width=480>
+
+## Part 2
+
+To simulate the cloth movement, we started by calculating the external forces on the cloth by aggregating the external accelerations multiplied by the point masses, and applying this force to all the points. We also calculated the spring correction forces for all the springs, taking into account what type each of the springs were.
+
+Then, we used Verlet integration with damping to update the positions of each non-pinned point mass at the next timestep, using information about the point's current and past position as well as the acceleration of the point. Finally, we constrained the point masses' positions to prevent the spring from stretching past 10% greater than its rest length, again making sure to only change the position of points that are not pinned.
+
+Next we explore the effects of some of the simulation parameters. For reference, here is a screenshot of `scene/pinned2.json` at its resting state with the default parameters `ks = 5000 N/m`, `density = 15 g/cm^2`, and `damping = 0.2%`.
+
+<img src="proj4_assets/pinned2_baseline.png" width=480>
+
+### `ks`
+
+Changing the spring constant affects how much the cloth stretches. When the spring constant is decreased, it bounces more as it reaches the end of its fall and is pulled down further, showing some smaller wrinkles in the fabric. With a larger spring constant, the cloth becomes more stiff.
+
+Below are images of `ks = 50 N/m` (left) and `ks = 50000 N/m` (right).
+
+<img src="proj4_assets/pinned2_ks_low.png" width=320>
+<img src="proj4_assets/pinned2_ks_high.png" width=320>
+
+### `density`
+
+Adjusting the density affects how "light" or "heavy" the cloth feels as it falls. As the density increases, we see that it folds down further as it is pulled by gravity.
+
+Below are images of `density = 1 g/cm^2` (left) and `density = 100 g/cm^2` (right).
+
+<img src="proj4_assets/pinned2_density_low.png" width=320>
+<img src="proj4_assets/pinned2_density_high.png" width=320>
+
+### `damping`
+
+The damping parameter controls how much fo the energy from the springs is lost. With a lower damping constant, the cloth bounces around for a lot longer after it falls. When the damping constant is increased, the cloth falls very slowly into the final position.
+
+Below are images of `damping = 0.034%` (left) and `damping = 0.770%` (right).
+
+<img src="proj4_assets/pinned2_damping_low.png" width=320>
+<img src="proj4_assets/pinned2_damping_high.png" width=320>
+
+Here is a screenshot of our `scene/pinned4.json` in its final resting state:
+<img src="proj4_assets/pinned4.png" width=480>
+
+## Part 3
+
+In this part we implemented collision handling between our cloth and other objects, namely spheres and planes.
+
+We handle collisions for each point mass individually. If the point mass has crossed to be inside an object, we calculate a correction vector to adjust the mass back to where it would have intersected the object. We then scale down the correction by a friction constant and apply it to the mass's position. 
+
+These collisions are handled for every step of our simulation, by looping through all the objects in the scene for every point mass.
+
+Below are results of our cloth in `scene/sphere.json` with varying spring constants. We see that smaller spring constants make the cloth more stretchy and allow it to be pulled down further by gravity, whereas larger values result in a stiffer cloth.
+
+`ks = 500`
+
+<img src="proj4_assets/sphere_ks_500.png" width=480>
+
+`ks = 5000`
+
+<img src="proj4_assets/sphere_ks_5000.png" width=480>
+
+`ks = 50000`
+
+<img src="proj4_assets/sphere_ks_50000.png" width=480>
+
+Here is a screenshot of our cloth lying peacefully at rest on the plane:
+
+<img src="proj4_assets/plane.png" width=480>
 
 ## Part 4
 
